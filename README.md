@@ -7,6 +7,11 @@ npm install
 npm start
 ```
 
+# Roadmap
+
+* [ ] - practice mutations   
+* [ ] - complete tests
+* [ ] - do some frontend to query from it 
 
 # References
 
