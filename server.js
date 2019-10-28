@@ -1,7 +1,8 @@
 const logging = require('loglevel');
 logger = logging.getLogger('server');
-logger.setLevel(logging.levels.INFO)
+logger.setLevel(logging.levels.INFO);
 const express = require('express');
+var graphqlHTTP = require('express-graphql');
 const { graphql, buildSchema } = require('graphql');
 
 const app = express();
@@ -18,7 +19,7 @@ process.on('unhandledRejection', (e) => {
 // Construct a schema, using GraphQL schema language
 const schema = buildSchema(`
   type Query {
-    hello: String
+    guymograbi: String
   }
 `);
 
@@ -28,6 +29,12 @@ var root = {
         return 'Hello world!';
     },
 };
+
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true,
+}));
 
 // Run the GraphQL query '{ hello }' and print out the response
 graphql(schema, '{ hello }', root).then((response) => {
